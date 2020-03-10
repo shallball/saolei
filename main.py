@@ -17,6 +17,8 @@ def end():
 	ret = dm.FindPic(1332,71,1886,370,"zd.bmp","000000",0.9,0,intX,intY)
 	if ret[0]!=-1:
 		os.exit()
+
+#识别数字		
 def find(pan):	
 	ret=dm.findpicex(1342,80,1883,369,"0.bmp","000000",0.6,0)
 	ret=ret.split("|")
@@ -79,14 +81,6 @@ def find(pan):
 			#time.sleep(0.3)
 			m=y*30+x
 			pan[m]=5
-	'''ret=dm.findpicex(1332,71,1886,370,"6.bmp","000000",0.7,0)
-	ret=ret.split("|")
-	if ret!=[""]:
-		for i in ret:
-			i=i.split(",")
-			x,y=zuobiao(int(i[1]),int(i[2]))
-			m=y*18+x+1
-			pan[m]=6'''
 	if pan==[-1]*480:
 		x=random.randint(10,20)
 		y=random.randint(5,11)
@@ -95,6 +89,8 @@ def find(pan):
 		dm.leftclick()
 		time.sleep(0.1)
 		dm.moveto(1342,70)	
+		
+#根据已有的数据计算出无雷区域
 def jisuan(pan):
 	lei1=[]
 	lei2=[]
@@ -205,7 +201,7 @@ def jisuan(pan):
 			if i!=j and set(i).issubset(set(j)):
 				for k in list(set(j)-set(i)):
 					dian.append(k)						
-	#print dian
+
 	dian=list(set(dian))
 	if dian==[]:
 		new+=1
